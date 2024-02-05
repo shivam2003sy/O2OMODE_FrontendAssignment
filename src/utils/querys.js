@@ -1,5 +1,25 @@
 import { gql } from '@apollo/client';
 
+export const GetProductsQuery = gql`
+  query GetProducts {
+    Product_Table {
+      product_id
+      name
+      description
+    }
+  }
+`;
+
+export const ADD_PRODUCT = gql`
+    mutation AddProduct($name: name!, $description: bpchar!) {
+        insert_Product_Table_one(object: {name: $name, description: $description}) {
+            product_id
+            name
+            description
+        }
+        }`;
+
+
 export const GetProductDetailsQuery = gql`
   query GetProductDetails($product_id: uuid!) {
     Product_Table(where: { product_id: { _eq: $product_id } }) {

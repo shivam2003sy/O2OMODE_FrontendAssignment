@@ -12,6 +12,9 @@ import {
   InMemoryCache,
   ApolloProvider,
 } from "@apollo/client";
+import AdminHomePage from "./pages/AdminHomePage";
+import AddProductPage from "./pages/AddProductPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 
 
@@ -21,6 +24,19 @@ import {
 //   'x-hasura-admin-secret': 'IxUkj3Jm4R0vQjzCpmtLT41Bzy6IA3Wue0EUgkaroaEmAg4nwXmgNnSpFPnuOttL',
 // },
 
+
+
+const AdminLayout = () => {
+  return (
+    <>
+      <Routes>
+       
+        
+        
+      </Routes>
+    </>
+  );
+};
 
 
 const App = () => {
@@ -35,23 +51,24 @@ headers: {
 
   
   return (
-
     <div className="overflow-hidden">
-
       <ApolloProvider client={client}>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/product/:id" element={<ProductDetails />}></Route>
-        </Routes>
-        <Sidebar />
-        <Footer />
-      </Router>
+        <Router>
+          <Header />
+          <Routes>
+          
+  <Route path="/" element={<Home />} />
+  <Route path="/product/:id" element={<ProductDetails />} />
+  <Route path="/admin" element={<AdminHomePage />} />
+  <Route path="/admin/addproduct" element={<AddProductPage />} />
+  <Route path="admin/products/:id" element={<ProductDetailPage />} />
+          </Routes>
+          <Footer />
+        </Router>
       </ApolloProvider>
-     
     </div>
   );
 };
+
 
 export default App;

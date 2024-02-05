@@ -29,8 +29,6 @@ export const CreateVariantMutation = gql`
     }
   }
 `;
-
-
 export const GET_FEATURED_PRODUCTS = gql`
   query GetFeaturedProducts {
     Variant_Table {
@@ -43,6 +41,44 @@ export const GET_FEATURED_PRODUCTS = gql`
         name
         description
       }
+    }
+  }
+`;
+
+
+
+export const ORDER_MUTATION = gql`
+  mutation InsertOrderTable(
+    $product_id: uuid,
+    $variant_id: uuid,
+    $quantity: numeric,
+    $total_price: bigint,
+    $buyer_id: bpchar!,
+    $updated_inventory: numeric!
+  ) {
+    insert_Order_Table(objects: {
+      product_id: $product_id,
+      variant_id: $variant_id,
+      quantity: $quantity,
+      total_price: $total_price,
+      buyer_id: $buyer_id
+    }) {
+      affected_rows
+      returning {
+        order_id
+        product_id
+        variant_id
+        quantity
+        total_price
+        order_date
+        buyer_id
+      }
+    }
+    update_Variant_Table(
+      where: { variant_id: { _eq: $variant_id } },
+      _inc: { inventory_count: $updated_inventory }
+    ) {
+      affected_rows
     }
   }
 `;

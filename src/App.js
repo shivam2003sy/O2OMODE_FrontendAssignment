@@ -56,13 +56,13 @@ headers: {
         <Router>
           <Header />
           <Routes>
-          
   <Route path="/" element={<Home />} />
   <Route path="/product/:id" element={<ProductDetails />} />
   <Route path="/admin" element={<AdminHomePage />} />
   <Route path="/admin/addproduct" element={<AddProductPage />} />
   <Route path="admin/products/:id" element={<ProductDetailPage />} />
           </Routes>
+          <Sidebar/>
           <Footer />
         </Router>
       </ApolloProvider>

@@ -103,3 +103,24 @@ export const ORDER_MUTATION = gql`
   }
 `;
 
+
+
+export const DELETE_PRODUCT = gql`
+  mutation DeleteProduct($product_id: uuid!) {
+    delete_Product_Table(where: { product_id: { _eq: $product_id } }) {
+      affected_rows
+    }
+    delete_Variant_Table(where: { product_id: { _eq: $product_id } }) {
+      affected_rows
+    }
+  }
+`;
+
+
+export const DELETE_VARIANT = gql`
+  mutation DeleteVariant($variant_id: uuid!) {
+    delete_Variant_Table(where: { variant_id: { _eq: $variant_id } }) {
+      affected_rows
+    }
+  }
+`;
